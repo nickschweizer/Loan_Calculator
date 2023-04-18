@@ -67,6 +67,20 @@ def test_home_page(client):
     assert b"Loan Calculator" in response.data
 
 
+ef test_404_page(client):
+    """
+    GIVEN a user visits the 404 page
+    WHEN the page loads
+    THEN the user sees "Page not found" in the page body
+    """
+    response = client.get("/x")
+    assert response.status_code == 404
+    print("\r")
+    print(" -- 404 page loads functional test")
+    assert b"Page not found" in response.data
+
+
+
 def test_calculate_loan_payment(client):
     """
     GIVEN a user enters their loan details
@@ -106,7 +120,3 @@ def test_full_loan_calculation(client):
     print(" -- full loan calculation and amortization table integration test")
     for field, value in data.items():
         assert value.encode() in response.data
-
-@app.errorhandler(404)
-def not_found_error(error):
-    return render_template("404.html"), 404
