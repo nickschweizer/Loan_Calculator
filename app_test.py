@@ -106,3 +106,7 @@ def test_full_loan_calculation(client):
     print(" -- full loan calculation and amortization table integration test")
     for field, value in data.items():
         assert value.encode() in response.data
+
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template("404.html"), 404
