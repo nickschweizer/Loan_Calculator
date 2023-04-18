@@ -67,7 +67,7 @@ def test_home_page(client):
     assert b"Loan Calculator" in response.data
 
 
-ef test_404_page(client):
+def test_404_page(client):
     """
     GIVEN a user visits the 404 page
     WHEN the page loads
